@@ -4,37 +4,28 @@ import com.prads.aquarium.models.Aquarium;
 import com.prads.aquarium.models.AquariumStatus;
 import com.prads.aquarium.models.User;
 import com.prads.aquarium.repository.AquariumRepository;
-import com.sun.istack.Nullable;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 public class UpdateAquariumForm {
 
-    @NotNull
-    private int volume;
     @NotNull @NotEmpty @Length(min = 3)
     private String name;
+    @NotNull
+    private int volume;
     private float waterLevel;
+    private boolean controlActive;
     private float temperature;
-    private boolean tempControllActive;
+    private boolean tempControlActive;
     private float setPointTemp;
     private float pH;
     private boolean phMonitActive;
     @Enumerated(EnumType.STRING)
-    private AquariumStatus status = AquariumStatus.OFFLINE;
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
+    private AquariumStatus status;
 
     public String getName() {
         return name;
@@ -42,6 +33,14 @@ public class UpdateAquariumForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 
     public float getWaterLevel() {
@@ -52,6 +51,14 @@ public class UpdateAquariumForm {
         this.waterLevel = waterLevel;
     }
 
+    public boolean isControlActive() {
+        return controlActive;
+    }
+
+    public void setControlActive(boolean controlActive) {
+        this.controlActive = controlActive;
+    }
+
     public float getTemperature() {
         return temperature;
     }
@@ -60,12 +67,12 @@ public class UpdateAquariumForm {
         this.temperature = temperature;
     }
 
-    public boolean isTempControllActive() {
-        return tempControllActive;
+    public boolean isTempControlActive() {
+        return tempControlActive;
     }
 
-    public void setTempControllActive(boolean tempControllActive) {
-        this.tempControllActive = tempControllActive;
+    public void setTempControlActive(boolean tempControlActive) {
+        this.tempControlActive = tempControlActive;
     }
 
     public float getSetPointTemp() {
@@ -106,11 +113,12 @@ public class UpdateAquariumForm {
 
     public Aquarium updatedAquarium(Long id, AquariumRepository aquariumRepository) {
         Aquarium aquarium = aquariumRepository.getOne(id);
-        aquarium.setVolume(this.volume);
         aquarium.setName(this.name);
+        aquarium.setVolume(this.volume);
         aquarium.setWaterLevel(this.waterLevel);
+        aquarium.setControlActive(this.controlActive);
         aquarium.setTemperature(this.temperature);
-        aquarium.setTempControllActive(this.tempControllActive);
+        aquarium.setTempControlActive(this.tempControlActive);
         aquarium.setSetPointTemp(this.setPointTemp);
         aquarium.setpH(this.pH);
         aquarium.setPhMonitActive(this.phMonitActive);

@@ -12,9 +12,9 @@ public class Aquarium {
 	private String name;
 	private int volume;
 	private float waterLevel;
-	private float temperature;
 	private boolean controlActive;
-	private boolean tempControllActive;
+	private float temperature;
+	private boolean tempControlActive;
 	private float setPointTemp;
 	private float pH;
 	private boolean phMonitActive;
@@ -85,14 +85,6 @@ public class Aquarium {
 		this.waterLevel = waterLevel;
 	}
 
-	public float getTemperature() {
-		return temperature;
-	}
-
-	public void setTemperature(float temperature) {
-		this.temperature = temperature;
-	}
-
 	public boolean getControlActive() {
 		return controlActive;
 	}
@@ -101,12 +93,20 @@ public class Aquarium {
 		this.controlActive = controlActive;
 	}
 
-	public boolean getTempControllActive() {
-		return tempControllActive;
+	public float getTemperature() {
+		return temperature;
 	}
 
-	public void setTempControllActive(boolean active) {
-		this.tempControllActive = active;
+	public void setTemperature(float temperature) {
+		this.temperature = temperature;
+	}
+
+	public boolean getTempControlActive() {
+		return tempControlActive;
+	}
+
+	public void setTempControlActive(boolean active) {
+		this.tempControlActive = active;
 	}
 
 	public float getSetPointTemp() {

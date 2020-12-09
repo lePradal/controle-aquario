@@ -10,16 +10,12 @@ import java.util.stream.Collectors;
 public class AquariumDTO {
     private Long id;
     private String name;
-    private int volume;
     private LocalDateTime creationDate;
-    private String userName;
 
     public AquariumDTO(Aquarium aquarium) {
         this.id = aquarium.getId();
-        this.volume = aquarium.getVolume();
         this.name = aquarium.getName();
         this.creationDate = aquarium.getCreationDate();
-        this.userName = aquarium.getUser().getName();
     }
 
     public Long getId() {
@@ -30,17 +26,11 @@ public class AquariumDTO {
         return name;
     }
 
-    public int getVolume() {
-        return volume;
-    }
 
     public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public String getUserName() {
-        return userName;
-    }
     public static AquariumDTO toDto(Aquarium aquarium) {
         return new AquariumDTO(aquarium);
     }
