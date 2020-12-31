@@ -1,14 +1,15 @@
 package com.prads.aquarium.controller;
 
-import com.prads.aquarium.config.security.AuthenticationService;
 import com.prads.aquarium.config.security.TokenService;
 import com.prads.aquarium.controller.dto.AquariumDTO;
+import com.prads.aquarium.controller.dto.AquariumDetailDTO;
 import com.prads.aquarium.controller.form.AquariumForm;
 import com.prads.aquarium.controller.form.UpdateAquariumForm;
 import com.prads.aquarium.models.Aquarium;
 import com.prads.aquarium.models.User;
 import com.prads.aquarium.repository.AquariumRepository;
 import com.prads.aquarium.repository.UserRepository;
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -62,18 +63,18 @@ public class AquariumsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AquariumDTO> detail(@RequestHeader("Authorization") String bearerToken, @PathVariable Long id) {
+    public ResponseEntity<AquariumDetailDTO> detail(@RequestHeader("Authorization") String bearerToken, @PathVariable Long id) throws NotFoundException {
         String token = recoverToken(bearerToken);
         Long userId = tokenService.getUserId(token);
 
         Optional<Aquarium> optional = aquariumRepository.findByIdAndUserId(id, userId);
 
         if (!optional.isPresent()) {
-            throw new UsernameNotFoundException("Invalid Aquarium!");
+            throw new NotFoundException("Invalid Aquarium!");
         }
 
         return optional
-                .map(aquarium -> ResponseEntity.ok(AquariumDTO.toDto(aquarium)))
+                .map(aquarium -> ResponseEntity.ok(AquariumDetailDTO.toDto(aquarium)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
 
     }
@@ -102,12 +103,12 @@ public class AquariumsController {
     @PutMapping("/{id}")
     @Transactional
     @CacheEvict(value = "aquariumsList", allEntries = true)
-    public ResponseEntity<AquariumDTO> update(@PathVariable Long id, @RequestBody @Valid UpdateAquariumForm aquariumForm) {
+    public ResponseEntity<AquariumDetailDTO> update(@PathVariable Long id, @RequestBody @Valid UpdateAquariumForm aquariumForm) {
         Optional<Aquarium> optional = aquariumRepository.findById(id);
 
         if (optional.isPresent()) {
             Aquarium aquarium = aquariumForm.updatedAquarium(id, aquariumRepository);
-            return ResponseEntity.ok(AquariumDTO.toDto(aquarium));
+            return ResponseEntity.ok(AquariumDetailDTO.toDto(aquarium));
         }
 
         return ResponseEntity.notFound().build();

@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
-import java.time.LocalDateTime;
 
 public class AquariumForm {
 
@@ -17,21 +16,8 @@ public class AquariumForm {
     private int volume;
     @NotNull @NotEmpty @Length(min = 3)
     private String name;
-    @Null
-    private float waterLevel;
-    @Null
-    private float temperature;
-    @Null
-    private boolean tempControllActive;
-    @Null
-    private float setPointTemp;
-    @Null
-    private float pH;
-    @Null
-    private boolean phMonitActive;
-    @Null
-    @Enumerated(EnumType.STRING)
-    private AquariumStatus status = AquariumStatus.OFFLINE;
+
+    private String description;
 
     public int getVolume() {
         return volume;
@@ -49,60 +35,12 @@ public class AquariumForm {
         this.name = name;
     }
 
-    public float getWaterLevel() {
-        return waterLevel;
+    public String getDescription() {
+        return description;
     }
 
-    public void setWaterLevel(float waterLevel) {
-        this.waterLevel = waterLevel;
-    }
-
-    public float getTemperature() {
-        return temperature;
-    }
-
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
-    }
-
-    public boolean isTempControllActive() {
-        return tempControllActive;
-    }
-
-    public void setTempControllActive(boolean tempControllActive) {
-        this.tempControllActive = tempControllActive;
-    }
-
-    public float getSetPointTemp() {
-        return setPointTemp;
-    }
-
-    public void setSetPointTemp(float setPointTemp) {
-        this.setPointTemp = setPointTemp;
-    }
-
-    public float getpH() {
-        return pH;
-    }
-
-    public void setpH(float pH) {
-        this.pH = pH;
-    }
-
-    public boolean isPhMonitActive() {
-        return phMonitActive;
-    }
-
-    public void setPhMonitActive(boolean phMonitActive) {
-        this.phMonitActive = phMonitActive;
-    }
-
-    public AquariumStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(AquariumStatus status) {
-        this.status = status;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Aquarium toAquarium(User user) {

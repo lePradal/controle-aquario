@@ -4,11 +4,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name="tb_user")
 public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
@@ -19,9 +21,18 @@ public class User implements UserDetails {
 	private String name;
 	private String email;
 	private String password;
+	private LocalDateTime creationDate = LocalDateTime.now();
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Profile> profiles = new ArrayList<>();
+
+	public User() {}
+
+	public User(String name, String email, String password) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
 
 	@Override
 	public int hashCode() {
@@ -70,6 +81,10 @@ public class User implements UserDetails {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public LocalDateTime getCreationDate() {
+		return creationDate;
 	}
 
 	@Override

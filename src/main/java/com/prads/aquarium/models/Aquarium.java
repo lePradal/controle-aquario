@@ -1,20 +1,25 @@
 package com.prads.aquarium.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class Aquarium {
+@Table(name="tb_aquarium")
+public class Aquarium implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String description;
 	private int volume;
 	private float waterLevel;
-	private float temperature;
 	private boolean controlActive;
-	private boolean tempControllActive;
+	private float temperature;
+	private boolean tempControlActive;
 	private float setPointTemp;
 	private float pH;
 	private boolean phMonitActive;
@@ -69,6 +74,14 @@ public class Aquarium {
 		this.name = name;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public int getVolume() {
 		return volume;
 	}
@@ -85,14 +98,6 @@ public class Aquarium {
 		this.waterLevel = waterLevel;
 	}
 
-	public float getTemperature() {
-		return temperature;
-	}
-
-	public void setTemperature(float temperature) {
-		this.temperature = temperature;
-	}
-
 	public boolean getControlActive() {
 		return controlActive;
 	}
@@ -101,12 +106,20 @@ public class Aquarium {
 		this.controlActive = controlActive;
 	}
 
-	public boolean getTempControllActive() {
-		return tempControllActive;
+	public float getTemperature() {
+		return temperature;
 	}
 
-	public void setTempControllActive(boolean active) {
-		this.tempControllActive = active;
+	public void setTemperature(float temperature) {
+		this.temperature = temperature;
+	}
+
+	public boolean getTempControlActive() {
+		return tempControlActive;
+	}
+
+	public void setTempControlActive(boolean active) {
+		this.tempControlActive = active;
 	}
 
 	public float getSetPointTemp() {
