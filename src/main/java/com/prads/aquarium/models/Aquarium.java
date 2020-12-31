@@ -1,15 +1,20 @@
 package com.prads.aquarium.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-public class Aquarium {
+@Table(name="tb_aquarium")
+public class Aquarium implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String description;
 	private int volume;
 	private float waterLevel;
 	private boolean controlActive;
@@ -67,6 +72,14 @@ public class Aquarium {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public int getVolume() {

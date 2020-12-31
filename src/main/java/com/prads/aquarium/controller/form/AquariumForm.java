@@ -17,6 +17,8 @@ public class AquariumForm {
     @NotNull @NotEmpty @Length(min = 3)
     private String name;
 
+    private String description;
+
     public int getVolume() {
         return volume;
     }
@@ -31,6 +33,14 @@ public class AquariumForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Aquarium toAquarium(User user) {

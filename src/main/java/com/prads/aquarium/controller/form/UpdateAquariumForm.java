@@ -15,6 +15,7 @@ public class UpdateAquariumForm {
 
     @NotNull @NotEmpty @Length(min = 3)
     private String name;
+    private String description;
     @NotNull
     private int volume;
     private float waterLevel;
@@ -33,6 +34,14 @@ public class UpdateAquariumForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getVolume() {
@@ -114,6 +123,7 @@ public class UpdateAquariumForm {
     public Aquarium updatedAquarium(Long id, AquariumRepository aquariumRepository) {
         Aquarium aquarium = aquariumRepository.getOne(id);
         aquarium.setName(this.name);
+        aquarium.setDescription(this.description);
         aquarium.setVolume(this.volume);
         aquarium.setWaterLevel(this.waterLevel);
         aquarium.setControlActive(this.controlActive);

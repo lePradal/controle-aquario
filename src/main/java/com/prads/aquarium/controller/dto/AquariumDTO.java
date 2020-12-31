@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class AquariumDTO {
     private Long id;
     private String name;
+    private String description;
     private LocalDateTime creationDate;
 
     public AquariumDTO(Aquarium aquarium) {
@@ -26,6 +27,9 @@ public class AquariumDTO {
         return name;
     }
 
+    public String getDescription() {
+        return description;
+    }
 
     public LocalDateTime getCreationDate() {
         return creationDate;

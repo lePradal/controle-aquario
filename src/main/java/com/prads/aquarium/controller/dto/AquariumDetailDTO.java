@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 public class AquariumDetailDTO {
     private Long id;
     private String name;
+    private String description;
     private int volume;
     private float waterLevel;
     private float temperature;
@@ -27,6 +28,7 @@ public class AquariumDetailDTO {
     public AquariumDetailDTO(Aquarium aquarium) {
         this.id = aquarium.getId();
         this.name = aquarium.getName();
+        this.description = aquarium.getDescription();
         this.volume = aquarium.getVolume();
         this.waterLevel = aquarium.getWaterLevel();
         this.temperature = aquarium.getTemperature();
@@ -45,6 +47,10 @@ public class AquariumDetailDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getVolume() {
