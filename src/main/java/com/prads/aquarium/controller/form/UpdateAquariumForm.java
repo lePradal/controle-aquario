@@ -16,6 +16,7 @@ public class UpdateAquariumForm {
     @NotNull @NotEmpty @Length(min = 3)
     private String name;
     private String description;
+    private String imageBase64;
     @NotNull
     private int volume;
     private float waterLevel;
@@ -42,6 +43,14 @@ public class UpdateAquariumForm {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageBase64) {
+        this.imageBase64 = imageBase64;
     }
 
     public int getVolume() {
@@ -124,6 +133,7 @@ public class UpdateAquariumForm {
         Aquarium aquarium = aquariumRepository.getOne(id);
         aquarium.setName(this.name);
         aquarium.setDescription(this.description);
+        aquarium.setImageBase64(this.imageBase64);
         aquarium.setVolume(this.volume);
         aquarium.setWaterLevel(this.waterLevel);
         aquarium.setControlActive(this.controlActive);
