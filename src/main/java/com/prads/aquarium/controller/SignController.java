@@ -43,6 +43,23 @@ public class SignController {
     @Autowired
     private TokenService tokenService;
 
+    @GetMapping()
+    public ResponseEntity<UserDTO> detail(@RequestHeader("Authorization") String bearerToken) throws NotFoundException {
+        String token = recoverToken(bearerToken);
+        Long userId = tokenService.getUserId(token);
+
+        Optional<User> optional = userRepository.findById(userId);
+
+        if (!optional.isPresent()) {
+            throw new NotFoundException("Invalid User!");
+        }
+
+        return optional
+                .map(user -> ResponseEntity.ok(UserDTO.toDto(user)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
+
+    }
+
     @PostMapping("/signup")
     @Transactional
     @CacheEvict(value = "users", allEntries = true)
