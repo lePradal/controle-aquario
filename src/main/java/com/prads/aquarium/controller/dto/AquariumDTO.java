@@ -17,6 +17,8 @@ public class AquariumDTO {
     public AquariumDTO(Aquarium aquarium) {
         this.id = aquarium.getId();
         this.name = aquarium.getName();
+        this.description = aquarium.getDescription();
+        this.imageUrl = aquarium.getImageUrl();
         this.creationDate = aquarium.getCreationDate();
     }
 
