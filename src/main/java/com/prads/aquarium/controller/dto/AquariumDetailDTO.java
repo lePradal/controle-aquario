@@ -14,7 +14,7 @@ public class AquariumDetailDTO {
     private Long id;
     private String name;
     private String description;
-    private String imageBase64;
+    private String imageUrl;
     private int volume;
     private float waterLevel;
     private float temperature;
@@ -30,7 +30,7 @@ public class AquariumDetailDTO {
         this.id = aquarium.getId();
         this.name = aquarium.getName();
         this.description = aquarium.getDescription();
-        this.imageBase64 = aquarium.getImageBase64();
+        this.imageUrl = aquarium.getImageUrl();
         this.volume = aquarium.getVolume();
         this.waterLevel = aquarium.getWaterLevel();
         this.temperature = aquarium.getTemperature();
@@ -55,8 +55,8 @@ public class AquariumDetailDTO {
         return description;
     }
 
-    public String getImageBase64() {
-        return imageBase64;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public int getVolume() {

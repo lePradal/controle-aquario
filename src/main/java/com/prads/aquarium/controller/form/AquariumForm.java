@@ -19,7 +19,7 @@ public class AquariumForm {
 
     private String description;
 
-    private String imageBase64;
+    private String imageUrl;
 
     public int getVolume() {
         return volume;
@@ -45,15 +45,15 @@ public class AquariumForm {
         this.description = description;
     }
 
-    public String getImageBase64() {
-        return imageBase64;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageBase64(String imageBase64) {
-        this.imageBase64 = imageBase64;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Aquarium toAquarium(User user) {
-        return new Aquarium(name, volume, user);
+        return new Aquarium(name, volume, description, imageUrl, user);
     }
 }

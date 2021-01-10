@@ -15,7 +15,7 @@ public class Aquarium implements Serializable {
 	private Long id;
 	private String name;
 	private String description;
-	private  String imageBase64;
+	private String imageUrl;
 	private int volume;
 	private float waterLevel;
 	private boolean controlActive;
@@ -32,9 +32,11 @@ public class Aquarium implements Serializable {
 
 	public Aquarium() {}
 
-	public Aquarium(String name, int volume, User user) {
+	public Aquarium(String name, int volume, String description, String imageUrl, User user) {
 		this.name = name;
 		this.volume = volume;
+		this.description = description;
+		this.imageUrl = imageUrl;
 		this.user = user;
 	}
 
@@ -83,12 +85,12 @@ public class Aquarium implements Serializable {
 		this.description = description;
 	}
 
-	public String getImageBase64() {
-		return imageBase64;
+	public String getImageUrl() {
+		return imageUrl;
 	}
 
-	public void setImageBase64(String imageBase64) {
-		this.imageBase64 = imageBase64;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	public int getVolume() {

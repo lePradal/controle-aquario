@@ -11,7 +11,7 @@ public class AquariumDTO {
     private Long id;
     private String name;
     private String description;
-    private String imageBase64;
+    private String imageUrl;
     private LocalDateTime creationDate;
 
     public AquariumDTO(Aquarium aquarium) {
@@ -32,8 +32,8 @@ public class AquariumDTO {
         return description;
     }
 
-    public String getImageBase64() {
-        return imageBase64;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public LocalDateTime getCreationDate() {
