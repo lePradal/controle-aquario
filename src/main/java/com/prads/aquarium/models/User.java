@@ -19,6 +19,7 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	private String surname;
 	private String email;
 	private String password;
 	private LocalDateTime creationDate = LocalDateTime.now();
@@ -28,8 +29,9 @@ public class User implements UserDetails {
 
 	public User() {}
 
-	public User(String name, String email, String password) {
+	public User(String name, String surname, String email, String password) {
 		this.name = name;
+		this.surname = surname;
 		this.email = email;
 		this.password = password;
 	}
@@ -73,6 +75,14 @@ public class User implements UserDetails {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getEmail() {

@@ -12,6 +12,9 @@ public class UpdateUserForm {
     @NotNull @NotEmpty @Length(min = 6)
     private String name;
 
+    @NotNull @NotEmpty
+    private String surname;
+
     @NotNull @NotEmpty @Length(min = 6)
     private String email;
 
@@ -21,6 +24,14 @@ public class UpdateUserForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
@@ -34,6 +45,7 @@ public class UpdateUserForm {
     public User updateUser(Long id, UserRepository userRepository) {
         User user = userRepository.getOne(id);
         user.setName(this.name);
+        user.setSurname(this.surname);
         user.setEmail(this.email);
 
         return user;

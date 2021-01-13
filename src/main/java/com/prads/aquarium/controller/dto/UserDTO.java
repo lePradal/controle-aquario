@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 public class UserDTO {
     private Long id;
     private String name;
+    private String surname;
     private String email;
     private LocalDateTime creationDate;
 
     public UserDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
+        this.surname = user.getSurname();
         this.email = user.getEmail();
         this.creationDate = user.getCreationDate();
     }
@@ -27,6 +29,10 @@ public class UserDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getSurname() {
+        return surname;
     }
 
     public String getEmail() {

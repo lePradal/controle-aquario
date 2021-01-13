@@ -13,7 +13,10 @@ public class UserForm {
     @NotNull @NotEmpty @Length(min = 6)
     private String name;
 
-    @NotNull @NotEmpty @Length(min = 6)
+    @NotNull @NotEmpty
+    private String surname;
+
+    @NotNull @NotEmpty
     private String email;
 
     @NotNull @NotEmpty @Length(min = 8)
@@ -25,6 +28,14 @@ public class UserForm {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getEmail() {
@@ -44,6 +55,6 @@ public class UserForm {
     }
 
     public User toUser() {
-        return new User(name, email, new BCryptPasswordEncoder().encode(password));
+        return new User(name, surname, email, new BCryptPasswordEncoder().encode(password));
     }
 }
