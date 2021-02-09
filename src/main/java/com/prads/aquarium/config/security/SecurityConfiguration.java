@@ -25,8 +25,11 @@ import java.util.Arrays;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Value("${url.frontend}")
-    String urlFrontEnd;
+    @Value("${url.frontend.firebase}")
+    private String urlFrontEnd;
+
+    @Value("${url.frontend.local}")
+    private String urlFrontEndLocal;
 
     @Autowired
     private AuthenticationService authenticationService;
@@ -41,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         System.out.println(urlFrontEnd);
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(urlFrontEnd));
+        configuration.setAllowedOrigins(Arrays.asList(urlFrontEnd, urlFrontEndLocal));
         configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
