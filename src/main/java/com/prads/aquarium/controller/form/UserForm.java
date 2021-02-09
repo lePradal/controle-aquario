@@ -10,10 +10,10 @@ import javax.validation.constraints.NotNull;
 
 public class UserForm {
 
-    @NotNull @NotEmpty @Length(min = 6)
+    @NotNull @NotEmpty @Length(min = 3)
     private String name;
 
-    @NotNull @NotEmpty
+    @NotNull @NotEmpty @Length(min = 3)
     private String surname;
 
     @NotNull @NotEmpty
