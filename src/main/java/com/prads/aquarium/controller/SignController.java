@@ -60,6 +60,17 @@ public class SignController {
 
     }
 
+    @GetMapping("/exists/{email}")
+    public ResponseEntity emailExists(@PathVariable String email) throws NotFoundException {
+        Optional<User> optional = userRepository.findByEmail(email);
+
+        if (optional.isPresent()) {
+            return ResponseEntity.ok().body(true);
+        }
+
+        return ResponseEntity.ok().body(false);
+    }
+
     @PostMapping("/signup")
     @Transactional
     @CacheEvict(value = "users", allEntries = true)

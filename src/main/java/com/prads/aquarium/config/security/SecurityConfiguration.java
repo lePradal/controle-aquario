@@ -42,9 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        System.out.println(urlFrontEnd);
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList(urlFrontEnd, urlFrontEndLocal));
+        configuration.applyPermitDefaultValues();
         configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -68,6 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/user").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/valid").permitAll()
                 .antMatchers(HttpMethod.POST, "/user/signup").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/exists/**").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

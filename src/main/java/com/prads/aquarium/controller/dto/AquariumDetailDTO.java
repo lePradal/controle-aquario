@@ -16,13 +16,9 @@ public class AquariumDetailDTO {
     private String description;
     private String imageUrl;
     private int volume;
-    private float waterLevel;
     private float temperature;
     private boolean controlActive;
-    private boolean tempControlActive;
     private float setPointTemp;
-    private float pH;
-    private boolean phMonitActive;
     private LocalDateTime creationDate;
     private AquariumStatus status;
 
@@ -32,13 +28,9 @@ public class AquariumDetailDTO {
         this.description = aquarium.getDescription();
         this.imageUrl = aquarium.getImageUrl();
         this.volume = aquarium.getVolume();
-        this.waterLevel = aquarium.getWaterLevel();
         this.temperature = aquarium.getTemperature();
         this.controlActive = aquarium.getControlActive();
-        this.tempControlActive = aquarium.getTempControlActive();
         this.setPointTemp = aquarium.getSetPointTemp();
-        this.pH = aquarium.getpH();
-        this.phMonitActive = aquarium.getPhMonitActive();
         this.creationDate = aquarium.getCreationDate();
         this.status = aquarium.getStatus();
     }
@@ -63,10 +55,6 @@ public class AquariumDetailDTO {
         return volume;
     }
 
-    public float getWaterLevel() {
-        return waterLevel;
-    }
-
     public float getTemperature() {
         return temperature;
     }
@@ -75,20 +63,8 @@ public class AquariumDetailDTO {
         return controlActive;
     }
 
-    public boolean isTempControlActive() {
-        return tempControlActive;
-    }
-
     public float getSetPointTemp() {
         return setPointTemp;
-    }
-
-    public float getpH() {
-        return pH;
-    }
-
-    public boolean isPhMonitActive() {
-        return phMonitActive;
     }
 
     public LocalDateTime getCreationDate() {

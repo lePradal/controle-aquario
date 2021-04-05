@@ -17,13 +17,9 @@ public class Aquarium implements Serializable {
 	private String description;
 	private String imageUrl;
 	private int volume;
-	private float waterLevel;
 	private boolean controlActive;
 	private float temperature;
-	private boolean tempControlActive;
 	private float setPointTemp;
-	private float pH;
-	private boolean phMonitActive;
 	private LocalDateTime creationDate = LocalDateTime.now();
 	@Enumerated(EnumType.STRING)
 	private AquariumStatus status = AquariumStatus.OFFLINE;
@@ -101,14 +97,6 @@ public class Aquarium implements Serializable {
 		this.volume = volume;
 	}
 
-	public float getWaterLevel() {
-		return waterLevel;
-	}
-
-	public void setWaterLevel(float waterLevel) {
-		this.waterLevel = waterLevel;
-	}
-
 	public boolean getControlActive() {
 		return controlActive;
 	}
@@ -125,36 +113,12 @@ public class Aquarium implements Serializable {
 		this.temperature = temperature;
 	}
 
-	public boolean getTempControlActive() {
-		return tempControlActive;
-	}
-
-	public void setTempControlActive(boolean active) {
-		this.tempControlActive = active;
-	}
-
 	public float getSetPointTemp() {
 		return setPointTemp;
 	}
 
 	public void setSetPointTemp(float setPointTemp) {
 		this.setPointTemp = setPointTemp;
-	}
-
-	public float getpH() {
-		return pH;
-	}
-
-	public void setpH(float pH) {
-		this.pH = pH;
-	}
-
-	public boolean getPhMonitActive() {
-		return phMonitActive;
-	}
-
-	public void setPhMonitActive(boolean active) {
-		this.phMonitActive = active;
 	}
 
 	public LocalDateTime getCreationDate() {

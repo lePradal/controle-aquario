@@ -19,13 +19,9 @@ public class UpdateAquariumForm {
     private String imageUrl;
     @NotNull
     private int volume;
-    private float waterLevel;
     private boolean controlActive;
     private float temperature;
-    private boolean tempControlActive;
     private float setPointTemp;
-    private float pH;
-    private boolean phMonitActive;
     @Enumerated(EnumType.STRING)
     private AquariumStatus status;
 
@@ -61,14 +57,6 @@ public class UpdateAquariumForm {
         this.volume = volume;
     }
 
-    public float getWaterLevel() {
-        return waterLevel;
-    }
-
-    public void setWaterLevel(float waterLevel) {
-        this.waterLevel = waterLevel;
-    }
-
     public boolean isControlActive() {
         return controlActive;
     }
@@ -85,36 +73,12 @@ public class UpdateAquariumForm {
         this.temperature = temperature;
     }
 
-    public boolean isTempControlActive() {
-        return tempControlActive;
-    }
-
-    public void setTempControlActive(boolean tempControlActive) {
-        this.tempControlActive = tempControlActive;
-    }
-
     public float getSetPointTemp() {
         return setPointTemp;
     }
 
     public void setSetPointTemp(float setPointTemp) {
         this.setPointTemp = setPointTemp;
-    }
-
-    public float getpH() {
-        return pH;
-    }
-
-    public void setpH(float pH) {
-        this.pH = pH;
-    }
-
-    public boolean isPhMonitActive() {
-        return phMonitActive;
-    }
-
-    public void setPhMonitActive(boolean phMonitActive) {
-        this.phMonitActive = phMonitActive;
     }
 
     public AquariumStatus getStatus() {
@@ -131,13 +95,9 @@ public class UpdateAquariumForm {
         aquarium.setDescription(this.description);
         aquarium.setImageUrl(this.imageUrl);
         aquarium.setVolume(this.volume);
-        aquarium.setWaterLevel(this.waterLevel);
         aquarium.setControlActive(this.controlActive);
         aquarium.setTemperature(this.temperature);
-        aquarium.setTempControlActive(this.tempControlActive);
         aquarium.setSetPointTemp(this.setPointTemp);
-        aquarium.setpH(this.pH);
-        aquarium.setPhMonitActive(this.phMonitActive);
         aquarium.setStatus(this.status);
 
         return aquarium;
