@@ -1,12 +1,11 @@
 package com.prads.aquarium.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name="tb_result")
 public class Result implements Serializable {
     private static final long serialVersionUID = 1L;
 

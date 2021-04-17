@@ -1,21 +1,16 @@
 package com.prads.aquarium.controller;
 
 import com.prads.aquarium.config.security.TokenService;
-import com.prads.aquarium.controller.dto.AquariumDTO;
-import com.prads.aquarium.controller.dto.AquariumDetailDTO;
-import com.prads.aquarium.controller.form.AquariumForm;
 import com.prads.aquarium.controller.form.ResultForm;
-import com.prads.aquarium.controller.form.UpdateAquariumForm;
 import com.prads.aquarium.models.Aquarium;
 import com.prads.aquarium.models.Result;
 import com.prads.aquarium.models.User;
 import com.prads.aquarium.repository.AquariumRepository;
-import com.prads.aquarium.repository.ResultsRepository;
+import com.prads.aquarium.repository.ResultRepository;
 import com.prads.aquarium.repository.UserRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -28,12 +23,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.text.ParseException;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/results")
-public class ResultsController {
+public class ResultController {
 
     @Autowired
     private AquariumRepository aquariumRepository;
@@ -45,14 +39,14 @@ public class ResultsController {
     private UserRepository userRepository;
 
     @Autowired
-    private ResultsRepository resultsRepository;
+    private ResultRepository resultRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<Result> detail(@RequestHeader("Authorization") String bearerToken, @PathVariable Long id) throws NotFoundException {
         String token = recoverToken(bearerToken);
         Long userId = tokenService.getUserId(token);
 
-        Optional<Result> optional = resultsRepository.findById(id);
+        Optional<Result> optional = resultRepository.findById(id);
 
         if (!optional.isPresent()) {
             throw new NotFoundException("Invalid Result!");
@@ -88,7 +82,7 @@ public class ResultsController {
         }
 
         Page<Result> resultsPage;
-        resultsPage = resultsRepository.findByAquariumId(aquariumId, pageable);
+        resultsPage = resultRepository.findByAquariumId(aquariumId, pageable);
 
         if (resultsPage.getTotalElements() > 0) {
             return ResponseEntity.ok(resultsPage);
@@ -117,7 +111,7 @@ public class ResultsController {
         }
 
         Result result = resultForm.toResult(user.get(), aquarium.get());
-        resultsRepository.save(result);
+        resultRepository.save(result);
 
         URI uri = uriBuilder.path("/results/{aquariumId}").buildAndExpand(result.getId()).toUri();
 
@@ -131,10 +125,10 @@ public class ResultsController {
         String token = recoverToken(bearerToken);
         Long userId = tokenService.getUserId(token);
 
-        Optional<Result> optional = resultsRepository.findByIdAndUserId(id, userId);
+        Optional<Result> optional = resultRepository.findByIdAndUserId(id, userId);
 
         if (optional.isPresent()) {
-            aquariumRepository.deleteById(id);
+            resultRepository.deleteById(id);
             return ResponseEntity.ok().build();
         }
 
