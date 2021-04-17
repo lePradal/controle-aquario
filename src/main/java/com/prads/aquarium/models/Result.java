@@ -13,7 +13,7 @@ public class Result implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDateTime creationDate = LocalDateTime.now();
 
     @ManyToOne
     private User user;
@@ -62,12 +62,12 @@ public class Result implements Serializable {
         return id;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public User getUser() {

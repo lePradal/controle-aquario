@@ -120,7 +120,7 @@ public class ResultController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    @CacheEvict(value = "aquariumsList", allEntries = true)
+    @CacheEvict(value = "resultsList", allEntries = true)
     public ResponseEntity delete(@RequestHeader("Authorization") String bearerToken, @PathVariable Long id) {
         String token = recoverToken(bearerToken);
         Long userId = tokenService.getUserId(token);
