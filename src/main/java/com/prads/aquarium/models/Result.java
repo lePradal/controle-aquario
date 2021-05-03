@@ -23,6 +23,7 @@ public class Result implements Serializable {
 
     private float weatherTemperature;
     private float aquariumTemperature;
+    private float setPoint;
 
     public Result() {}
 
@@ -31,6 +32,7 @@ public class Result implements Serializable {
         this.aquarium = aquarium;
         this.weatherTemperature = weatherTemperature;
         this.aquariumTemperature = aquarium.getTemperature();
+        this.setPoint = aquarium.getSetPointTemp();
     }
 
     @Override
@@ -100,5 +102,13 @@ public class Result implements Serializable {
 
     public void setAquariumTemperature(float aquariumTemperature) {
         this.aquariumTemperature = aquariumTemperature;
+    }
+
+    public float getSetPoint() {
+        return setPoint;
+    }
+
+    public void setSetPoint(float setPoint) {
+        this.setPoint = setPoint;
     }
 }
